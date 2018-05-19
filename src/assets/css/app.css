@@ -1,3 +1,14 @@
-body {
-    background-image: url("../media/webpack.png");
+.hidden {
+    display: none;
+}
+.showing{
+    display: block;
+}
+.title{
+    font-weight: bold;
+    font-size: 3em;
+}
+#photo{
+    height: 200px;
+    width: 200px;
 }
