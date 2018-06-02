@@ -1,34 +1,23 @@
 import './css/app.css'
 import '../../node_modules/firebaseui/dist/firebaseui.css'
 
-const gauth = require("./js/auth");
 const firebase = require("firebase/app");
 require("firebase/database");
 const firebaseui = require('firebaseui');
 
-const gauth_config = {
-  apiKey: 'AIzaSyBzCyZsZxmVm4h148ZVMBK8arsDz9WLR84',
-  discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4",
-    "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-  clientId: '544287231306-raj6hbtm31o5j1t732jvsbgrhhjnibqm.apps.googleusercontent.com',
-  scope: 'https://www.googleapis.com/auth/drive.readonly'
-};
+const gauth_config = require("./not_shared/config/googleConfig");
 
-const firebaseConfig = {
-  apiKey: gauth_config.apiKey,
-  authDomain: "flashcards-6c206.firebaseapp.com",
-  databaseURL: "https://flashcards-6c206.firebaseio.com",
-  projectId: "flashcards-6c206",
-  storageBucket: "flashcards-6c206.appspot.com",
-  messagingSenderId: "544287231306",
-};
+const firebaseConfig =require("./not_shared/config/firebaseConfig");
 firebase.initializeApp(firebaseConfig);
 
 const firebaseUIConfig = {
-  signInSuccessUrl: 'http://localhost:12003/',
+  signInSuccessUrl: document.location.href,
   signInOptions: [
     {provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      scopes: [gauth_config.scope]}
+      scopes: [gauth_config.scope],
+      customParameters: {
+        prompt: 'select_account'
+      }}
   ],
   tosUrl: 'http://localhost:12003/'
 };
